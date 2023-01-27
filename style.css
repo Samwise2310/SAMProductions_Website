@@ -44,13 +44,13 @@ img
 @font-face
 {
     font-family: Belicimo;
-    src: url('fonts/Belicimo.otf');
+    src: url('fonts/Belicimo.ttf');
     
     font-family: TheBeard;
     src: url('fonts/The Beard.otf');
     
     font-family: Hermona;
-    src: url('fonts\Hermona.ttf');
+    src: url('fonts/Hermona.ttf');
 }
 
 
