@@ -44,13 +44,19 @@ img
 @font-face
 {
     font-family: Belicimo;
-    src: url('fonts/Belicimo.ttf');
+    src: url('fonts/Belicimo.ttf')
+        format('truetype');
     
     font-family: TheBeard;
     src: url('fonts/The Beard.otf');
     
     font-family: Hermona;
-    src: url('fonts/Hermona.ttf');
+    src: url('fonts/Hermona.ttf')
+        format('truetype');
+    
+    font-family: coffeeTeaReg;
+        src: url('fonts/coffeeTeaReg.ttf')
+        format('truetype');
 }
 
 
