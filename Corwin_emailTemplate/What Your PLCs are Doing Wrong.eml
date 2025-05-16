@@ -1,0 +1,780 @@
+Delivered-To: sam.addington@daytonisd.net
+Received: by 2002:a2e:a267:0:b0:326:b3a7:c25a with SMTP id k7csp864670ljm;
+        Fri, 9 May 2025 03:30:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHsXAOR2uDtoF3DGHE5r5QizWti5Rin0axXgokazU2N4IzMoqMdBC3JNgTIXJ/B7Y+mAvRI
+X-Received: by 2002:a05:6402:42c7:b0:5fb:87a2:22fc with SMTP id 4fb4d7f45d1cf-5fca081bbc2mr2328533a12.30.1746786646213;
+        Fri, 09 May 2025 03:30:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746786646; cv=none;
+        d=google.com; s=arc-20240605;
+        b=iG7DvLn0yd/MKUN3khrdVJ2hP9YX+zTz4H91IFU2nPV3kiE7bCiOe0ndoXJ2liaILc
+         QGVE/EX+nDGmCShWqsUD8jn5/pmkY/lVQjR6qBWZD5tcELFZbHInYCQNmHN7Pf1yLpW/
+         l6/Dz8Ph/cH8lpkwYfn0mmmrhJxz+vBCAyGg2ugmcqfwup1dknaegq2TRBKR+o+2gz3W
+         A1bIVUAEoVZr/cvAI4/cE0Dn56a/5JgcSbPVZ+KJrAu/lusa4jO3DLJWupAMujzspVb2
+         MAJFhPZRoNCES0KvzpG8kM7UZ0RPNP1Mb23+YtO7GPzIaiVyohQTx6gtRKNNhGQzP8Lp
+         +wgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=dkim-signature:message-id:list-id:feedback-id:list-unsubscribe-post
+         :list-unsubscribe:date:mime-version:subject:reply-to:to:from;
+        bh=sevlGNEBON00abP4diA8+w9oseZjN3P6K4tggrefjFQ=;
+        fh=cxhTXU8u6vSR+Gx7zImhwbrbzvYcC36C7R3mrVJKy/A=;
+        b=FSKkTn9YdAhlh0580IjTyGUuVEqDluo/53UVVAxMPBSnXvxkokZPM4566VTYdF2AT/
+         ES7IY7RGwJNf4qE/GRxbrU+18NsdwW7zOXqqTRNemlVS5hg5Jzf+yCvqUN9fubunXX9v
+         MxHIQnD5+jQrCVbNBXcWBRhser9eCxXRxF+rOYKeOwXeyvMeCKN8uLALHmAcEFvgDcMq
+         dG2WZ/itsvFevoCf6UccWUbmATvpJGyNlSbcUAEzrtBCr5Mc/i+1I2A4voot+3xEtkey
+         IQcW3l/ABauTDr4zgmQmUk+fzYWGXqo2u1ApB90yu6ARdK8jPlPg4AqhsOFCz4bfWDfr
+         QzRw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@k12.corwin.com header.s=sim header.b=iiyUM6Az;
+       spf=pass (google.com: domain of info@k12.corwin.com designates 185.194.85.21 as permitted sender) smtp.mailfrom=info@k12.corwin.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=corwin.com
+Return-Path: <info@k12.corwin.com>
+Received: from sdcb021.slgnt.us (sdcb021.slgnt.us. [185.194.85.21])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5fc9d6f426csi1273461a12.526.2025.05.09.03.30.46
+        for <sam.addington@daytonisd.net>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 May 2025 03:30:46 -0700 (PDT)
+Received-SPF: pass (google.com: domain of info@k12.corwin.com designates 185.194.85.21 as permitted sender) client-ip=185.194.85.21;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@k12.corwin.com header.s=sim header.b=iiyUM6Az;
+       spf=pass (google.com: domain of info@k12.corwin.com designates 185.194.85.21 as permitted sender) smtp.mailfrom=info@k12.corwin.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=corwin.com
+From: "Corwin Webinars" <info@k12.corwin.com>
+To: "sam.addington@daytonisd.net" <sam.addington@daytonisd.net>
+Reply-To: "Corwin" <info@corwin.com>
+Subject: What Your PLCs are Doing Wrong
+MIME-Version: 1.0
+Date: Fri, 09 May 2025 10:28:42 +0000
+List-Unsubscribe: <https://k12.corwin.com/optiext/optiextension.dll?ID=pTSpVSrFXhfBnr4fqp5lsL50RinEcuze6eSb8Qh0RNKU7kBFNYXy4nd1GTp71VuJZal25q8a2Y2p%2Bbk%2BlCByeZk0ACtwdb%2B3wr_rU6p3>, <mailto:listunsubscribe@slgnt.us?subject=UNSUB.8c290bacc39a4cf6fa1f5b0aca26ebcc.pTSpVSrFXhfBnr4fqp5lsL50RinEcuze6eSb8Qh0RNKU7kBFNYXy4nd1GTp71VuJZal25q8a2Y2p%2Bbk%2BlCByeZk0ACtwdb%2B3wr_rU6p3>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-MA-Reference: SIM_pMmpRi6A%2BqQ4TMALFAYuxWazqZclN%2Bl0JEsO9ZyuS1Tgxy0pQ
+X-MA-Instance: SIM_pMmpRi6A%2BqQ4TMALFAYuxWazqZclN%2Bl0JEsO9ZyuS1Tgxy0pQ.8c290bacc39a4cf6fa1f5b0aca26ebcc
+X-rpcampaign: corwin_22388_1000400_55628
+Feedback-ID: 58eaf486ab5d44b8beac5441cb160f2d:22388:SLGNT
+List-ID: <6.22388.k12.corwin.com>
+X-MailingID: 22388_0
+X-GRID-REF: SDCPrd.PATT3L0_58eaf486ab5d44b8beac5441cb160f2d_gh7s6/9pP1uyoIycSgaugDDPhCkBffltP3M/gh3wkg0TcSW4BbsDL4/GZMoYwnp5yxDY4zjMXLPAuaf0mpSmeS5HpV2q-S85u1d9Xp7eEKJWhjDyWaaIWhppV1OyrXwp
+X-SDC-Acc: 51783803-1350-44a8-b1d5-21fc06e50f31
+X-SDC-Shard: camelot
+X-SDC-ExtRef: 58eaf486ab5d44b8beac5441cb160f2d_1767314959
+Message-Id: <83dd603e1b934cf9a8c42b59e80df1c5@slgnt.us>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=k12.corwin.com; 
+ s=sim; x=1747391322; i=@k12.corwin.com; 
+ h=from:to:reply-to:subject:mime-version:date:list-unsubscribe:list-unsubscribe-post:feedback-id:list-id:message-id; 
+ bh=sevlGNEBON00abP4diA8+w9oseZjN3P6K4tggrefjFQ=; 
+ b=iiyUM6AzGU9pW0FdrDTG3oR/mwXSUkj7VuO80wDv6kAcnMzgWozpB7zurRuI9GcruSVtMr0tQDxKnbROCm3VnDaKSNeolkL070Uxpsdln5XkRz4AUXq42HitYg+6jsOg7O+dNI2a9ff/4x2tLNlVxyanmCjNdB5H0n4en0EspIA=
+Content-Type: multipart/alternative;
+	boundary="_NexPart_001_"
+
+--_NexPart_001_
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+What Your PLCs are Doing Wrong
+
+Tuesday, June 3, 2025 - 3:30PM PT
+
+Join thought leaders Douglas Fisher and Nancy Frey as they take a critica=
+l look at PLCs and how to harness the power of collaborative efficacy and=
+ collective responsibility. They'll discuss the latest research and explo=
+re the PLC+ comprehensive method of engaging in a cycle of learning throu=
+gh inquiry to improve evidence, effective decision-making, and individual=
+ and collective student and teacher learning.
+
+Save my spot: https://k12.corwin.com/optiext/optiextension.dll?ID=3DqYZqY=
+vnNLq6efiReuXV9Sad5TqSCTaQxcsQCEEEizxSqhhVG5JZITSUjcvno195YpgB1KOQTu1tmUd=
+yde9VDOznVIuZq28NKH9SiiUWK
+
+
+-------------------------------
+
+
+
+
+=E2=AD=90Book Giveaway=E2=AD=90
+
+Attend the live session for a chance to win a=C2=A0free copy=C2=A0of Your=
+ Introduction to PLC+(https://k12.corwin.com/optiext/optiextension.dll?ID=
+=3DpTSpRM0sz89F3y8JaJ6EbRzjkHAhEGxtg%2BQMQE57pR1NLoi%2BMzselxFw8gWDOeqHRn=
+_2EGCoo3ge15wzRAJpagFjFuzcXKFnzKChK9pT)=21=C2=A0
+
+Read the=C2=A0official=C2=A0rules.(https://k12.corwin.com/optiext/optiext=
+ension.dll?ID=3DpTSpVuzbcQnRQ0wBJrJngetrn%2Bqmgd5vcZJk1IfBE1HrKMSFMg1v3YF=
+vJOHWXymJ1yfzlqwa7UVtCaxQmx1H3woXxOfoUb2cw7_bWRVu)
+
+
+
+
+
+Corwin Connect Blog: https://k12.corwin.com/optiext/optiextension.dll?ID=3D=
+pTSpVT0Yy4jieoaRySwrdufYSUuOtsfaYNm6iivcpiUHGtlFMqRbuV%2Be5x%2Bbpl%2B6MFJ=
+JPNif0iC2HgsA_w_qF0ojwP_YrekT%2B5RcwmVq
+
+
+Contact My PD Advisor: https://k12.corwin.com/optiext/optiextension.dll?I=
+D=3DpTSpOvyOo%2BeVF5AUP7ZA9Qm%2Bbg_gT%2BipC5Z08xNIK8LZobBFNaDs5JGCybOODiI=
+G9sKAoYp1b9Pesyo9KfhabbdLXnlztA6czLKiCBpO
+
+
+Manage My Account: https://k12.corwin.com/optiext/optiextension.dll?ID=3D=
+pTSpSVAHjvYWUBVxv8%2BS5mr7cLa6UUjTxSoDyVqTtPJA4M_FMbYax5rtP2blcrxVQz%2B8S=
+08s3EaO1oIPCeafyJDHMelIofZ%2BqzPH7QpX
+
+
+
+=C2=A0
+
+
+
+
+
+=C2=A0
+
+Corwin has one mission: to enhance education through intentional professi=
+onal learning. We build long-term relationships with our authors, educato=
+rs, clients, and associations who partner with us to develop and continuo=
+usly improve the best, evidence-based practices that establish and suppor=
+t lifelong learning.
+
+Find out more: https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSp=
+V2X5dtKzCppQYVqhyVmFqMaKIKD7HgB2GrIwdUIKwJ1%2BNcHe0gplrjd0b1IfjOJ12gMICnr=
+RKgv56ULx7zasdYPqROgGC3Cp%2BwV3
+
+
+
+2455 Teller Road, Thousand Oaks, CA 91320, USA =7C (800) 233-9936
+www.corwin.com(https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSp=
+REPTxMPqr8VAB6m0f4W2CX0Yv7Rt92g37OPA57hcGcN%2BN38Hmq_VkKmhkwBr5dyRCVWzEHi=
+uSc8ois%2BNLl42lLlghO3HHFQJripU)
+
+To ensure our emails reach your inbox, add info=40k12.corwin.com to your =
+address book.
+
+View our privacy policy(https://k12.corwin.com/optiext/optiextension.dll?=
+ID=3DpTSpV4ciTXNfTB7EK%2Bb4mpa9%2BbbTw5voobeYfpwnzzcFPDTFM2bHa1Uww4hFjWpK=
+KSBrsVLSlayVaIyHh2lcSY_7wuSp0wbLZNTMn5py).
+
+This message was sent to sam.addington=40daytonisd.net. If you'd rather n=
+ot receive emails from Corwin, you may unsubscribe(https://k12.corwin.com=
+/optiext/optiextension.dll?ID=3DpTSpUCXmqHx9dnDhYiwFpa%2BvhBU%2B4lm_HESlq=
+KZcfsn06h1%2BNm2uswjgs9Y3FKSOYmqiL4WAPlp_3u6ANfHbP22Lgmtkc6SQ6W7vaOpr).
+
+=C2=A9 2025
+FF251530485
+--_NexPart_001_
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns=3D=22http://www.w3.org/1999/xhtml=22 xmlns:v=3D=22urn:schemas=
+-microsoft-com:vml=22 xmlns:o=3D=22urn:schemas-microsoft-com:office:offic=
+e=22><head><meta http-equiv=3D=22Content-Type=22 content=3D=22text/html; =
+charset=3Dutf-8=22 /><meta charset=3D=22utf-8=22  /><meta name=3D=22viewp=
+ort=22  content=3D=22width=3Ddevice-width=22  /><meta http-equiv=3D=22X-U=
+A-Compatible=22  content=3D=22IE=3Dedge=22  /><meta name=3D=22x-apple-dis=
+able-message-reformatting=22  /><title>What Your PLCs are Doing Wrong</ti=
+tle>
+      <=21--=5Bif (gte mso 9)=7C(IE)=5D><xml><o:OfficeDocumentSettings><o=
+:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSetting=
+s></xml><=21=5Bendif=5D-->
+    <style type=3D=22text/css=22 >*=7B-ms-text-size-adjust:100%;-webkit-t=
+ext-size-adjust:100%=7Dhtml,body=7Bpadding:0=21important;height:100%=21im=
+portant;width:100%=21important;margin:0=21important=7Ddiv=5Bstyle*=3D=22m=
+argin: 16px 0=22=5D=7Bmargin:0=21important=7Dtable,td=7Bmso-table-lspace:=
+0=21important;mso-table-rspace:0=21important=7Dtable=7Bborder-spacing:0=21=
+important;margin:0 auto=21important=7D.yshortcuts a=7Bborder-bottom:none=21=
+important=7Da=5Bx-apple-data-detectors=5D=7Bcolor:inherit=21important;tex=
+t-decoration:underline=21important=7D.applelinks a=7Bcolor:=23222;text-de=
+coration:none=7Dth=7Bpadding:0=21important;margin:0=21important;font-weig=
+ht:normal=7Dspan.MsoHyperlink=7Bmso-style-priority:99;color:inherit=7Dspa=
+n.MsoHyperlinkFollowed=7Bmso-style-priority:99;color:inherit=7D=23Message=
+ViewBody,=23MessageWebViewDiv=7Bwidth:100%=21important=7D=40media screen =
+yahoo=7B*=7Boverflow:visible=21important;=7D.y-overflow-hidden=7Boverflow=
+:hidden=21important;=7D.m_show=7Bdisplay:none;=7D=7D.columns=7Bdisplay:in=
+line-block;text-align:center=7D=23preheader=7Bdisplay:none=7D.m_show tabl=
+e=7Bdisplay:none=7D
+=40media screen and (max-width:600px)=7B
+    .quarter=7Bwidth:25%=21important;max-width:25%=21important=7D.third=7B=
+width:33.333%=21important;max-width:33.333%=21important=7D.second=7Bwidth=
+:50%=21important;max-width:50%=21important=7D.full=7Bwidth:100%=21importa=
+nt;max-width:100%=21important=7D.m_hide=7Bdisplay:none=21important=7D.m_s=
+how=7Bdisplay:table=21important=7D.m_hide table=7Bdisplay:none=21importan=
+t=7D.m_show table=7Bdisplay:table=21important=7D.geniuswrapper=7Bwidth:32=
+0px=21important;padding:0=21important=7D.geniuscontainer=7Bwidth:300px=21=
+important;padding:0=21important=7D.geniusmobile=7Bwidth:300px=21important=
+;display:block=21important;padding:0=21important=7D.btn_table=7Bdisplay:t=
+able=21important=7D.btn_td=7Bdisplay:block=21important=7D
+=7D
+=40media screen and (max-width:480px)=7B
+    .quarter=7Bwidth:50%=21important;max-width:50%=21important=7D.second,=
+=2Ethird=7Bwidth:100%=21important;max-width:100%=21important=7D
+=7D</style></head><body  bgcolor=3D=22=23ffffff=22  width=3D=22100%=22  s=
+tyle=3D=22margin:0;padding:0=22 ><div style=3D=22display:none;font-size:0=
+px;color:=23999999;line-height:0px;max-height:0px;max-width:0px;opacity:0=
+;overflow:hidden;=22>Join Doug Fisher and Nancy Frey for our next Corwin =
+Webinar</div><div style=3D=22display:none;max-height:0px;overflow:hidden;=
+=22>&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;</div><img width=3D=221=22 height=3D=221=22 src=3D=22=
+https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSpPGOYNW9tqdsJJYb=
+BhdoJw3DjVrKojRyZnDKg4MkpdvwFNjovewTrXFKcMsbLdixnQfVo8vxG%2B0W4mQJJQka7Mf=
+9Q2KcACxYVs8Vy=22 style=3D=22display:none; margin:0; padding:0; visibilit=
+y:hidden; overflow:hidden; max-height:0;width:0px;height:0px;font-size:0;=
+color:=23FFFFFF;mso-hide:all;float: left;line-height:0;=22 alt=3D=22=22><=
+table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  wid=
+th=3D=22100%=22  role=3D=22presentation=22  bgcolor=3D=22=23ffffff=22 ><t=
+r><td class=3D=22m_hide=22  style=3D=22font-size:0; line-height:1px; heig=
+ht:1px;=22  height=3D=221=22 >&nbsp;</td><td bgcolor=3D=22=23ffffff=22  v=
+align=3D=22top=22  style=3D=22width:600px;text-align:left;word-wrap:break=
+-word;word-break:normal=22 ><table cellpadding=3D=220=22  cellspacing=3D=22=
+0=22  border=3D=220=22  role=3D=22presentation=22  width=3D=22100%=22 ><t=
+r><td align=3D=22center=22 ><a href=3D=22https://k12.corwin.com/optiext/o=
+ptiextension.dll?ID=3DpTSpQ66XdW64EfM85RSUMEYs1ME%2BdVPApTV2A9MiPIWNh3FFN=
+A2c0mJFk3O0VzU9s1lQE4yk_O33shLVmo15moqFzJd5DHqhUfYk7MVk=22  rel=3D=22noop=
+ener noreferrer=22  target=3D=22_blank=22  style=3D=22text-decoration:non=
+e;cursor:default=22 ><img id=3D=22OWATemporaryImageDivContainer1=22  src=3D=
+=22https://k12.corwin.com/images/SMC/.org/3f3676a6-e310-4a77-ab06-72dcec8=
+ac3ce/tracking-pixel-image_0.png=22  alt=3D=22do not click=22  border=3D=22=
+0=22  width=3D=221=22  style=3D=22max-width:100%;display:block;width:1px=22=
+ /></a></td></tr></table><table cellpadding=3D=220=22  cellspacing=3D=220=
+=22  border=3D=220=22  role=3D=22presentation=22  width=3D=22100%=22 ><tr=
+><td align=3D=22center=22 ><a href=3D=22https://k12.corwin.com/optiext/op=
+tiextension.dll?ID=3DpTSpSLQPk%2BiaGQ%2B5xZXICSSnOssqxgkm24UUck5FhSHNX3Z%=
+2BMTs%2BxgZCPnsXVa0vUY6r9i0RjZbYh2AkTZ8H3kJGiaAqsd96CTMnUvpr=22  rel=3D=22=
+noopener noreferrer=22  target=3D=22_blank=22  style=3D=22text-decoration=
+:none;cursor:default=22 ><img id=3D=22OWATemporaryImageDivContainer1=22  =
+src=3D=22https://k12.corwin.com/images/SMC/AA_CORWIN/Banners/GP251517250_=
+Webinar_600x100_general.png=22  alt=3D=22Corwin Webinar Series=22  border=
+=3D=220=22  class=3D=22full=22  width=3D=22600=22  style=3D=22max-width:1=
+00%;display:block;width:600px=22 /></a></td></tr></table><table cellpaddi=
+ng=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22presenta=
+tion=22  width=3D=22100%=22 ><tr><td height=3D=226=22  style=3D=22line-he=
+ight:6px;height:6px=22 ><img alt=3D=22=22  border=3D=220=22  src=3D=22htt=
+ps://k12.corwin.com/Portal/resourcehandler/static/x.png=22  height=3D=226=
+=22  style=3D=22display:block;height:6px=22 /></td></tr></table></td><td =
+class=3D=22m_hide=22  style=3D=22font-size:0; line-height:1px; height:1px=
+;=22  height=3D=221=22 >&nbsp;</td></tr></table><table cellpadding=3D=220=
+=22  cellspacing=3D=220=22  border=3D=220=22  width=3D=22100%=22  role=3D=
+=22presentation=22  bgcolor=3D=22=23ffffff=22 ><tr><td class=3D=22m_hide=22=
+  style=3D=22font-size:0; line-height:1px; height:1px;=22  height=3D=221=22=
+ >&nbsp;</td><td bgcolor=3D=22=23ffffff=22  valign=3D=22top=22  style=3D=22=
+width:600px;text-align:left;word-wrap:break-word;word-break:normal=22 ><t=
+able cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=
+=3D=22presentation=22  width=3D=22100%=22 ><tr><td height=3D=2211=22  sty=
+le=3D=22line-height:11px;height:11px=22 ><img alt=3D=22=22  border=3D=220=
+=22  src=3D=22https://k12.corwin.com/Portal/resourcehandler/static/x.png=22=
+  height=3D=2211=22  style=3D=22display:block;height:11px=22 /></td></tr>=
+</table><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=22=
+0=22  role=3D=22presentation=22  width=3D=22100%=22 ><tr><td style=3D=22f=
+ont-family:Tahoma;font-size:12px;color:=23000000;font-weight:normal;word-=
+wrap:break-word;word-break:normal;text-align:left=22 ><p style=3D=22font-=
+family:Tahoma;font-size:12px;color:=23000000;font-weight:normal;word-wrap=
+:break-word;word-break:normal;text-align:center=22 ><span style=3D=22font=
+-family:Arial;font-size:20px;color:=230a0041;=22 ><strong>What Your PLCs =
+are Doing Wrong</strong></span></p><p style=3D=22font-family:Tahoma;font-=
+size:12px;color:=23000000;font-weight:normal;word-wrap:break-word;word-br=
+eak:normal;text-align:center=22 ><span style=3D=22color:=230a0041;font-si=
+ze:13.5pt;font-family:Arial;=22 ><strong>Tuesday, June 3, 2025 - 3:30PM P=
+T</strong></span><span style=3D=22color:=23333333;font-size:13.5pt;font-f=
+amily:Arial;=22 ><strong></strong></span><br /><br /></p><span style=3D=22=
+font-family:Arial;font-size:14px;color:=23000000;=22 >Join thought leader=
+s<strong> Douglas Fisher and Nancy Frey </strong>as they take a critical =
+look at PLCs and how to harness the power of collaborative efficacy and c=
+ollective responsibility. They'll discuss the latest research and explore=
+ the PLC+ comprehensive method of engaging in a cycle of learning through=
+ inquiry to improve evidence, effective decision-making, and individual a=
+nd collective student and teacher learning.</span><br /><span style=3D=22=
+font-size:14px;font-family:Arial;=22 ></span></td></tr></table><table cel=
+lpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22pr=
+esentation=22  width=3D=22100%=22 ><tr><td height=3D=2211=22  style=3D=22=
+line-height:11px;height:11px=22 ><img alt=3D=22=22  border=3D=220=22  src=
+=3D=22https://k12.corwin.com/Portal/resourcehandler/static/x.png=22  heig=
+ht=3D=2211=22  style=3D=22display:block;height:11px=22 /></td></tr></tabl=
+e><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  =
+role=3D=22presentation=22  width=3D=22100%=22 ><tr><td align=3D=22center=22=
+ ><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  =
+role=3D=22presentation=22  class=3D=22btn_table=22  width=3D=22275=22  st=
+yle=3D=22display:table=22 ><tr><td class=3D=22btn_td=22  bgcolor=3D=22=23=
+ff2350=22  width=3D=22275=22  style=3D=22font-family:Arial;line-height:16=
+px;font-size:16px;color:=23ffffff;padding-top:5px;padding-right:5px;paddi=
+ng-bottom:5px;padding-left:5px;text-align:center;text-decoration:none;bor=
+der-radius:3px;text-overflow:ellipsis;overflow:hidden;display:block;word-=
+wrap:break-word;word-break:normal;font-weight:normal;mso-height-rule:exac=
+tly=22 ><a class=3D=22btn=22  href=3D=22https://k12.corwin.com/optiext/op=
+tiextension.dll?ID=3DqYZqYvnNLq6efiReuXV9Sad5TqSCTaQxcsQCEEEizxSqhhVG5JZI=
+TSUjcvno195YpgB1KOQTu1tmUdyde9VDOznVIuZq28NKH9SiiUWK=22  target=3D=22_bla=
+nk=22  rel=3D=22noopener noreferrer=22  style=3D=22color:=23ffffff;text-d=
+ecoration:none=22 >Save my spot</a></td></tr></table></td></tr></table><t=
+able cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=
+=3D=22presentation=22  width=3D=22100%=22 ><tr><td height=3D=2211=22  sty=
+le=3D=22line-height:11px;height:11px=22 ><img alt=3D=22=22  border=3D=220=
+=22  src=3D=22https://k12.corwin.com/Portal/resourcehandler/static/x.png=22=
+  height=3D=2211=22  style=3D=22display:block;height:11px=22 /></td></tr>=
+</table><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=22=
+0=22  role=3D=22presentation=22  width=3D=22100%=22  bgcolor=3D=22=239A9A=
+9A=22 ><tr><td height=3D=221=22  style=3D=22line-height:1px;height:1px=22=
+ ><img alt=3D=22=22  border=3D=220=22  src=3D=22https://k12.corwin.com/Po=
+rtal/resourcehandler/static/x.png=22  height=3D=221=22  style=3D=22height=
+:1px;display:block=22 /></td></tr></table><table cellpadding=3D=220=22  c=
+ellspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=
+=22100%=22 ><tr><td height=3D=2211=22  style=3D=22line-height:11px;height=
+:11px=22 ><img alt=3D=22=22  border=3D=220=22  src=3D=22https://k12.corwi=
+n.com/Portal/resourcehandler/static/x.png=22  height=3D=2211=22  style=3D=
+=22display:block;height:11px=22 /></td></tr></table></td><td class=3D=22m=
+_hide=22  style=3D=22font-size:0; line-height:1px; height:1px;=22  height=
+=3D=221=22 >&nbsp;</td></tr></table><table cellpadding=3D=220=22  cellspa=
+cing=3D=220=22  border=3D=220=22  width=3D=22100%=22  role=3D=22presentat=
+ion=22  bgcolor=3D=22=23ffffff=22 ><tr><td class=3D=22m_hide=22  style=3D=
+=22font-size:0; line-height:1px; height:1px;=22  height=3D=221=22 >&nbsp;=
+</td><td bgcolor=3D=22=23ffffff=22  style=3D=22width:600px=22 ><table cel=
+lpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  width=3D=221=
+00%=22  role=3D=22presentation=22  style=3D=22text-align: center=22 ><tr =
+style=3D=22font-size: 0=22 ><th class=3D=22columns full=22  valign=3D=22t=
+op=22  style=3D=22text-align:left;word-wrap:break-word;word-break:normal;=
+display:inline-block;min-width:240px;max-width:100%;width:40%;min-width:-=
+webkit-calc(40%);min-width:calc(40%);width:-webkit-calc(230400px - 48000%=
+);width:calc(230400px - 48000%)=22 ><table cellpadding=3D=220=22  cellspa=
+cing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=221=
+00%=22 ><tr><td align=3D=22center=22 ><a href=3D=22https://k12.corwin.com=
+/optiext/optiextension.dll?ID=3DpTSpRM0sz89F3y8JaJ6EbRzjkHAhEGxtg%2BQMQE5=
+7pR1NLoi%2BMzselxFw8gWDOeqHRn_2EGCoo3ge15wzRAJpagFjFuzcXKFnzKChK9pT=22  r=
+el=3D=22noopener noreferrer=22  target=3D=22_blank=22  style=3D=22text-de=
+coration:none;cursor:default=22 ><img id=3D=22OWATemporaryImageDivContain=
+er1=22  src=3D=22https://corwinpress.azureedge.net/sp-corwinpress-prod/im=
+ages/default-source/books/book-293453-v293453-145226-u63879627300000000.j=
+pg?sfvrsn=3D4352465d_0=22  alt=3D=22Your Introduction to PLC+ book=22  bo=
+rder=3D=220=22  width=3D=22175=22  style=3D=22max-width:100%;display:bloc=
+k;width:175px=22 /></a></td></tr></table><table cellpadding=3D=220=22  ce=
+llspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=
+=22100%=22 ><tr><td height=3D=2211=22  style=3D=22line-height:11px;height=
+:11px=22 ><img alt=3D=22=22  border=3D=220=22  src=3D=22https://k12.corwi=
+n.com/Portal/resourcehandler/static/x.png=22  height=3D=2211=22  style=3D=
+=22display:block;height:11px=22 /></td></tr></table></th><th class=3D=22c=
+olumns full=22  valign=3D=22top=22  style=3D=22text-align:left;word-wrap:=
+break-word;word-break:normal;display:inline-block;min-width:360px;max-wid=
+th:100%;width:60%;min-width:-webkit-calc(60%);min-width:calc(60%);width:-=
+webkit-calc(230400px - 48000%);width:calc(230400px - 48000%)=22 ><table c=
+ellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22=
+presentation=22  width=3D=22100%=22 ><tr><td height=3D=2211=22  style=3D=22=
+line-height:11px;height:11px=22 ><img alt=3D=22=22  border=3D=220=22  src=
+=3D=22https://k12.corwin.com/Portal/resourcehandler/static/x.png=22  heig=
+ht=3D=2211=22  style=3D=22display:block;height:11px=22 /></td></tr></tabl=
+e><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  =
+role=3D=22presentation=22  width=3D=22100%=22  style=3D=22display:table=22=
+ ><tr><td style=3D=22font-family:Tahoma;font-size:12px;color:=23000000;fo=
+nt-weight:normal;word-wrap:break-word;word-break:normal;width:100%;text-a=
+lign:left=22 ><p style=3D=22font-family:Tahoma;font-size:12px;color:=2300=
+0000;font-weight:normal;word-wrap:break-word;word-break:normal=22 ><span =
+style=3D=22font-size:18px;=22 >=E2=AD=90</span><span style=3D=22color:=23=
+ff2350;font-family:Arial;font-size:18px;=22 ><strong>Book Giveaway</stron=
+g></span><span style=3D=22font-size:18px;=22 >=E2=AD=90</span></p><p styl=
+e=3D=22font-family:Tahoma;font-size:12px;color:=23000000;font-weight:norm=
+al;word-wrap:break-word;word-break:normal=22 ><span style=3D=22color:=23c=
+c0000;font-family:Arial;font-size:18px;=22 ><strong><span style=3D=22colo=
+r:=232f2f2f;=22 >Attend the live session for a chance to win a&nbsp;</spa=
+n></strong><span style=3D=22color:=232f2f2f;=22 ><strong>free copy</stron=
+g></span></span><span style=3D=22font-family:Arial;font-size:18px;color:=23=
+2f2f2f;=22 ><strong>&nbsp;</strong></span><span style=3D=22color:=232f2f2=
+f;font-family:Arial;font-size:18px;=22 ><strong>of <em><a href=3D=22https=
+://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSpRM0sz89F3y8JaJ6EbRzj=
+kHAhEGxtg%2BQMQE57pR1NLoi%2BMzselxFw8gWDOeqHRn_2EGCoo3ge15wzRAJpagFjFuzcX=
+KFnzKChK9pT=22  style=3D=22text-decoration:underline;color:=230a0041;=22 =
+>Your Introduction to PLC+</a></em>=21<em>&nbsp;</em></strong></span></p>=
+<p style=3D=22font-family:Tahoma;font-size:12px;color:=23000000;font-weig=
+ht:normal;word-wrap:break-word;word-break:normal=22 ><span style=3D=22col=
+or:=23000000;=22 ><em></em></span><em><span style=3D=22color:=23000000;fo=
+nt-family:Arial;font-size:14px;=22 ></span></em><a href=3D=22https://k12.=
+corwin.com/optiext/optiextension.dll?ID=3DpTSpVuzbcQnRQ0wBJrJngetrn%2Bqmg=
+d5vcZJk1IfBE1HrKMSFMg1v3YFvJOHWXymJ1yfzlqwa7UVtCaxQmx1H3woXxOfoUb2cw7_bWR=
+Vu=22  style=3D=22text-decoration:underline;color:=230a0041;=22 >Read the=
+&nbsp;official&nbsp;rules.</a><span style=3D=22color:=23000000;font-famil=
+y:Arial;font-size:14px;=22 ><em></em></span><br /></p></td></tr></table><=
+/th></tr></table></td><td class=3D=22m_hide=22  style=3D=22font-size:0; l=
+ine-height:1px; height:1px;=22  height=3D=221=22 >&nbsp;</td></tr></table=
+><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  w=
+idth=3D=22100%=22  role=3D=22presentation=22  bgcolor=3D=22=23ffffff=22 >=
+<tr><td class=3D=22m_hide=22  style=3D=22font-size:0; line-height:1px; he=
+ight:1px;=22  height=3D=221=22 >&nbsp;</td><td bgcolor=3D=22=23ffffff=22 =
+ valign=3D=22top=22  style=3D=22width:600px;text-align:left;word-wrap:bre=
+ak-word;word-break:normal=22 ><table cellpadding=3D=220=22  cellspacing=3D=
+=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=22100%=22 =
+><tr><td height=3D=2211=22  style=3D=22line-height:11px;height:11px=22 ><=
+img alt=3D=22=22  border=3D=220=22  src=3D=22https://k12.corwin.com/Porta=
+l/resourcehandler/static/x.png=22  height=3D=2211=22  style=3D=22display:=
+block;height:11px=22 /></td></tr></table><table cellpadding=3D=220=22  ce=
+llspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=
+=22100%=22 ><tr><td align=3D=22center=22 ><a href=3D=22https://k12.corwin=
+=2Ecom/optiext/optiextension.dll?ID=3DpTSpRHI0FtqSL0fr9ByEXpDo4F4xRxycjm0=
+WI2lZln2Oe3jFNlj2F9aAnRVQ%2B0DWcqnBU3Y3s1poEW3dGgFdMOlAaI1pYgi_W7IJsopP=22=
+  rel=3D=22noopener noreferrer=22  target=3D=22_blank=22  style=3D=22text=
+-decoration:none;cursor:default=22 ><img id=3D=22OWATemporaryImageDivCont=
+ainer1=22  src=3D=22https://k12.corwin.com/images/SMC/AA_CORWIN/Banners/P=
+LS251565900_Gen_Rebranded_Graphic_1200x200_opt4.jpg=22  alt=3D=22Empowere=
+d Teachers, Inspired Students. Your go-to for comprehensive, high-impact =
+professional learning.=22  border=3D=220=22  class=3D=22full=22  width=3D=
+=22600=22  style=3D=22max-width:100%;display:block;width:600px=22 /></a><=
+/td></tr></table><table cellpadding=3D=220=22  cellspacing=3D=220=22  bor=
+der=3D=220=22  role=3D=22presentation=22  width=3D=22100%=22 ><tr><td hei=
+ght=3D=2211=22  style=3D=22line-height:11px;height:11px=22 ><img alt=3D=22=
+=22  border=3D=220=22  src=3D=22https://k12.corwin.com/Portal/resourcehan=
+dler/static/x.png=22  height=3D=2211=22  style=3D=22display:block;height:=
+11px=22 /></td></tr></table><table cellpadding=3D=220=22  cellspacing=3D=22=
+0=22  border=3D=220=22  role=3D=22presentation=22  width=3D=22100%=22 ><t=
+r><td height=3D=2211=22  style=3D=22line-height:11px;height:11px=22 ><img=
+ alt=3D=22=22  border=3D=220=22  src=3D=22https://k12.corwin.com/Portal/r=
+esourcehandler/static/x.png=22  height=3D=2211=22  style=3D=22display:blo=
+ck;height:11px=22 /></td></tr></table></td><td class=3D=22m_hide=22  styl=
+e=3D=22font-size:0; line-height:1px; height:1px;=22  height=3D=221=22 >&n=
+bsp;</td></tr></table><table cellpadding=3D=220=22  cellspacing=3D=220=22=
+  border=3D=220=22  width=3D=22100%=22  role=3D=22presentation=22  bgcolo=
+r=3D=22=23ffffff=22 ><tr><td class=3D=22m_hide=22  style=3D=22font-size:0=
+; line-height:1px; height:1px;=22  height=3D=221=22 >&nbsp;</td><td bgcol=
+or=3D=22=23ffffff=22  style=3D=22width:600px=22 ><table cellpadding=3D=22=
+0=22  cellspacing=3D=220=22  border=3D=220=22  width=3D=22100%=22  role=3D=
+=22presentation=22  style=3D=22text-align: center=22 ><tr style=3D=22font=
+-size: 0=22 ><th class=3D=22columns full=22  valign=3D=22top=22  style=3D=
+=22text-align:left;word-wrap:break-word;word-break:normal;display:inline-=
+block;min-width:200px;max-width:100%;width:33.333%;min-width:-webkit-calc=
+(33.333%);min-width:calc(33.333%);width:-webkit-calc(230400px - 48000%);w=
+idth:calc(230400px - 48000%)=22 ><table cellpadding=3D=220=22  cellspacin=
+g=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=22100%=
+=22 ><tr><td align=3D=22center=22 ><a href=3D=22https://k12.corwin.com/op=
+tiext/optiextension.dll?ID=3DpTSpVT0Yy4jieoaRySwrdufYSUuOtsfaYNm6iivcpiUH=
+GtlFMqRbuV%2Be5x%2Bbpl%2B6MFJJPNif0iC2HgsA_w_qF0ojwP_YrekT%2B5RcwmVq=22  =
+rel=3D=22noopener noreferrer=22  target=3D=22_blank=22  style=3D=22text-d=
+ecoration:none;cursor:default=22 ><img id=3D=22OWATemporaryImageDivContai=
+ner1=22  src=3D=22https://k12.corwin.com/images/SMC/corwin%20connect%20bl=
+og.png=22  alt=3D=22=22  border=3D=220=22  width=3D=2225=22  style=3D=22m=
+ax-width:100%;display:block;width:25px=22 /></a></td></tr></table><table =
+cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22=
+presentation=22  width=3D=22100%=22 ><tr><td align=3D=22center=22 ><table=
+ cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22=
+presentation=22  class=3D=22btn_table=22  width=3D=22180=22  style=3D=22d=
+isplay:table=22 ><tr><td class=3D=22btn_td=22  bgcolor=3D=22=23ffffff=22 =
+ width=3D=22180=22  style=3D=22font-family:Tahoma;line-height:15px;font-s=
+ize:15px;color:=23000000;padding-top:5px;padding-right:5px;padding-bottom=
+:5px;padding-left:5px;text-align:center;text-decoration:none;border-radiu=
+s:3px;text-overflow:ellipsis;overflow:hidden;display:block;word-wrap:brea=
+k-word;word-break:normal;font-weight:normal;mso-height-rule:exactly=22 ><=
+a class=3D=22btn=22  href=3D=22https://k12.corwin.com/optiext/optiextensi=
+on.dll?ID=3DpTSpVT0Yy4jieoaRySwrdufYSUuOtsfaYNm6iivcpiUHGtlFMqRbuV%2Be5x%=
+2Bbpl%2B6MFJJPNif0iC2HgsA_w_qF0ojwP_YrekT%2B5RcwmVq=22  target=3D=22_blan=
+k=22  rel=3D=22noopener noreferrer=22  style=3D=22color:=23000000;text-de=
+coration:none=22 >Corwin Connect Blog</a></td></tr></table></td></tr></ta=
+ble></th><th class=3D=22columns full=22  valign=3D=22top=22  style=3D=22t=
+ext-align:left;word-wrap:break-word;word-break:normal;display:inline-bloc=
+k;min-width:200px;max-width:100%;width:33.333%;min-width:-webkit-calc(33.=
+333%);min-width:calc(33.333%);width:-webkit-calc(230400px - 48000%);width=
+:calc(230400px - 48000%)=22 ><table cellpadding=3D=220=22  cellspacing=3D=
+=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=22100%=22 =
+><tr><td align=3D=22center=22 ><a href=3D=22https://k12.corwin.com/optiex=
+t/optiextension.dll?ID=3DpTSpOvyOo%2BeVF5AUP7ZA9Qm%2Bbg_gT%2BipC5Z08xNIK8=
+LZobBFNaDs5JGCybOODiIG9sKAoYp1b9Pesyo9KfhabbdLXnlztA6czLKiCBpO=22  rel=3D=
+=22noopener noreferrer=22  target=3D=22_blank=22  style=3D=22text-decorat=
+ion:none;cursor:default=22 ><img id=3D=22OWATemporaryImageDivContainer1=22=
+  src=3D=22https://k12.corwin.com/images/SMC/contact%20my%20rep.png=22  a=
+lt=3D=22=22  border=3D=220=22  width=3D=2225=22  style=3D=22max-width:100=
+%;display:block;width:25px=22 /></a></td></tr></table><table cellpadding=3D=
+=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22=
+  width=3D=22100%=22 ><tr><td align=3D=22center=22 ><table cellpadding=3D=
+=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22=
+  class=3D=22btn_table=22  width=3D=22180=22  style=3D=22display:table=22=
+ ><tr><td class=3D=22btn_td=22  bgcolor=3D=22=23ffffff=22  width=3D=22180=
+=22  style=3D=22font-family:Tahoma;line-height:15px;font-size:15px;color:=
+=23000000;padding-top:5px;padding-right:5px;padding-bottom:5px;padding-le=
+ft:5px;text-align:center;text-decoration:none;border-radius:3px;text-over=
+flow:ellipsis;overflow:hidden;display:block;word-wrap:break-word;word-bre=
+ak:normal;font-weight:normal;mso-height-rule:exactly=22 ><a class=3D=22bt=
+n=22  href=3D=22https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTS=
+pOvyOo%2BeVF5AUP7ZA9Qm%2Bbg_gT%2BipC5Z08xNIK8LZobBFNaDs5JGCybOODiIG9sKAoY=
+p1b9Pesyo9KfhabbdLXnlztA6czLKiCBpO=22  target=3D=22_blank=22  rel=3D=22no=
+opener noreferrer=22  style=3D=22color:=23000000;text-decoration:none=22 =
+>Contact My PD Advisor</a></td></tr></table></td></tr></table></th><th cl=
+ass=3D=22columns full=22  valign=3D=22top=22  style=3D=22text-align:left;=
+word-wrap:break-word;word-break:normal;display:inline-block;min-width:200=
+px;max-width:100%;width:33.333%;min-width:-webkit-calc(33.333%);min-width=
+:calc(33.333%);width:-webkit-calc(230400px - 48000%);width:calc(230400px =
+- 48000%)=22 ><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=
+=3D=220=22  role=3D=22presentation=22  width=3D=22100%=22 ><tr><td align=3D=
+=22center=22 ><a href=3D=22https://k12.corwin.com/optiext/optiextension.d=
+ll?ID=3DpTSpSVAHjvYWUBVxv8%2BS5mr7cLa6UUjTxSoDyVqTtPJA4M_FMbYax5rtP2blcrx=
+VQz%2B8S08s3EaO1oIPCeafyJDHMelIofZ%2BqzPH7QpX=22  rel=3D=22noopener noref=
+errer=22  target=3D=22_blank=22  style=3D=22text-decoration:none;cursor:d=
+efault=22 ><img id=3D=22OWATemporaryImageDivContainer1=22  src=3D=22https=
+://k12.corwin.com/images/SMC/manage%20account.png=22  alt=3D=22=22  borde=
+r=3D=220=22  width=3D=2225=22  style=3D=22max-width:100%;display:block;wi=
+dth:25px=22 /></a></td></tr></table><table cellpadding=3D=220=22  cellspa=
+cing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=221=
+00%=22 ><tr><td align=3D=22center=22 ><table cellpadding=3D=220=22  cells=
+pacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  class=3D=22=
+btn_table=22  width=3D=22180=22  style=3D=22display:table=22 ><tr><td cla=
+ss=3D=22btn_td=22  bgcolor=3D=22=23ffffff=22  width=3D=22180=22  style=3D=
+=22font-family:Tahoma;line-height:15px;font-size:15px;color:=23000000;pad=
+ding-top:5px;padding-right:5px;padding-bottom:5px;padding-left:5px;text-a=
+lign:center;text-decoration:none;border-radius:3px;text-overflow:ellipsis=
+;overflow:hidden;display:block;word-wrap:break-word;word-break:normal;fon=
+t-weight:normal;mso-height-rule:exactly=22 ><a class=3D=22btn=22  href=3D=
+=22https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSpSVAHjvYWUBVx=
+v8%2BS5mr7cLa6UUjTxSoDyVqTtPJA4M_FMbYax5rtP2blcrxVQz%2B8S08s3EaO1oIPCeafy=
+JDHMelIofZ%2BqzPH7QpX=22  target=3D=22_blank=22  rel=3D=22noopener norefe=
+rrer=22  style=3D=22color:=23000000;text-decoration:none=22 >Manage My Ac=
+count</a></td></tr></table></td></tr></table><table cellpadding=3D=220=22=
+  cellspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  wid=
+th=3D=22100%=22 ><tr><td height=3D=226=22  style=3D=22line-height:6px;hei=
+ght:6px=22 ><img alt=3D=22=22  border=3D=220=22  src=3D=22https://k12.cor=
+win.com/Portal/resourcehandler/static/x.png=22  height=3D=226=22  style=3D=
+=22display:block;height:6px=22 /></td></tr></table></th></tr></table></td=
+><td class=3D=22m_hide=22  style=3D=22font-size:0; line-height:1px; heigh=
+t:1px;=22  height=3D=221=22 >&nbsp;</td></tr></table><table cellpadding=3D=
+=220=22  cellspacing=3D=220=22  border=3D=220=22  width=3D=22100%=22  rol=
+e=3D=22presentation=22  bgcolor=3D=22=23ffffff=22 ><tr><td class=3D=22m_h=
+ide=22  style=3D=22font-size:0; line-height:1px; height:1px;=22  height=3D=
+=221=22 >&nbsp;</td><td bgcolor=3D=22=23eeeeee=22  valign=3D=22top=22  st=
+yle=3D=22width:600px;text-align:left;word-wrap:break-word;word-break:norm=
+al=22 ><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=
+=22  role=3D=22presentation=22  width=3D=22100%=22 ><tr><td height=3D=221=
+1=22  style=3D=22line-height:11px;height:11px=22 ><img alt=3D=22=22  bord=
+er=3D=220=22  src=3D=22https://k12.corwin.com/Portal/resourcehandler/stat=
+ic/x.png=22  height=3D=2211=22  style=3D=22display:block;height:11px=22 /=
+></td></tr></table></td><td class=3D=22m_hide=22  style=3D=22font-size:0;=
+ line-height:1px; height:1px;=22  height=3D=221=22 >&nbsp;</td></tr></tab=
+le><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22 =
+ width=3D=22100%=22  role=3D=22presentation=22  bgcolor=3D=22=23ffffff=22=
+ ><tr><td class=3D=22m_hide=22  style=3D=22font-size:0; line-height:1px; =
+height:1px;=22  height=3D=221=22 >&nbsp;</td><td bgcolor=3D=22=23eeeeee=22=
+  style=3D=22width:600px=22 ><table cellpadding=3D=220=22  cellspacing=3D=
+=220=22  border=3D=220=22  width=3D=22100%=22  role=3D=22presentation=22 =
+ style=3D=22text-align: center=22 ><tr style=3D=22font-size: 0=22 ><th cl=
+ass=3D=22columns=22  valign=3D=22top=22  style=3D=22text-align:right;widt=
+h:25%=22 ><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=22=
+0=22  width=3D=22100%=22  role=3D=22presentation=22 ><tr><td bgcolor=3D=22=
+=23eeeeee=22  style=3D=22word-wrap:break-word;word-break:normal;width:100=
+%=22 ><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22=
+  role=3D=22presentation=22  style=3D=22table-layout: fixed;=22  align=3D=
+=22right=22 ><tr><td valign=3D=22top=22  style=3D=22calc(100px - 0px - 0p=
+x);max-width:calc(100px - 0px - 0px);min-width:-webkit-calc(100px - 0px -=
+ 0px);max-width:-webkit-calc(100px - 0px - 0px);=22 ><table cellpadding=3D=
+=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22=
+  width=3D=22100=22  style=3D=22display:table=22 ><tr><td style=3D=22font=
+-family:Tahoma;font-size:12px;color:=23000000;font-weight:normal;word-wra=
+p:break-word;word-break:normal;width:100px;min-width:calc(100px - 0px - 0=
+px);max-width:calc(100px - 0px - 0px);min-width:-webkit-calc(100px - 0px =
+- 0px);max-width:-webkit-calc(100px - 0px - 0px);;text-align:right=22 >&n=
+bsp;</td></tr></table></td></tr></table></td></tr></table></th><th class=3D=
+=22columns=22  valign=3D=22top=22  style=3D=22text-align:left;width:50%=22=
+ ><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  =
+width=3D=22100%=22  role=3D=22presentation=22 ><tr><td bgcolor=3D=22=23ee=
+eeee=22  style=3D=22word-wrap:break-word;word-break:normal=22 ><table cel=
+lpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22pr=
+esentation=22  style=3D=22table-layout: fixed;=22  align=3D=22left=22 ><t=
+r><td valign=3D=22top=22  style=3D=22white-space:nowrap;text-wrap:none;=22=
+ ><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  =
+role=3D=22presentation=22  width=3D=22100%=22 ><tr><td align=3D=22left=22=
+ ><a href=3D=22https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSp=
+T_2Rc7JY%2B0K%2BsyrLKaT06AiKAnWsPyiRBgWkKiaOjRe%2BMPuT2HSMzd%2BSlirSq4AJe=
+1GBa8k%2Bk1A3VNKRmT7nvZcPAUgG7pmOObV0=22  rel=3D=22noopener noreferrer=22=
+  target=3D=22_blank=22  style=3D=22text-decoration:none;cursor:default=22=
+ ><img id=3D=22OWATemporaryImageDivContainer1=22  src=3D=22https://k12.co=
+rwin.com/images/SMC/social%20icons/twitter.png=22  alt=3D=22=22  border=3D=
+=220=22  width=3D=2259=22  style=3D=22max-width:100%;display:block;width:=
+59px;min-width:calc(59px - 0px - 0px);max-width:calc(59px - 0px - 0px);mi=
+n-width:-webkit-calc(59px - 0px - 0px);max-width:-webkit-calc(59px - 0px =
+- 0px);=22 /></a></td></tr></table></td><td valign=3D=22top=22  style=3D=22=
+white-space:nowrap;text-wrap:none;=22 ><table cellpadding=3D=220=22  cell=
+spacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=22=
+100%=22 ><tr><td align=3D=22center=22 ><a href=3D=22https://k12.corwin.co=
+m/optiext/optiextension.dll?ID=3DpTSpVehfZK6bgIPZtReWGk25R8ci8ZNM0e2hb7bN=
+tCh5V3m%2BNQMsYehNgQx9Hswk43bR_VsSQt9GhEV9w8zMXfIGpp5AyIQCkKDWv3VO=22  re=
+l=3D=22noopener noreferrer=22  target=3D=22_blank=22  style=3D=22text-dec=
+oration:none;cursor:default=22 ><img id=3D=22OWATemporaryImageDivContaine=
+r1=22  src=3D=22https://k12.corwin.com/images/SMC/social%20icons/facebook=
+=2Epng=22  alt=3D=22=22  border=3D=220=22  width=3D=2259=22  style=3D=22m=
+ax-width:100%;display:block;width:59px;min-width:calc(59px - 0px - 0px);m=
+ax-width:calc(59px - 0px - 0px);min-width:-webkit-calc(59px - 0px - 0px);=
+max-width:-webkit-calc(59px - 0px - 0px);=22 /></a></td></tr></table></td=
+><td valign=3D=22top=22  style=3D=22white-space:nowrap;text-wrap:none;=22=
+ ><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  =
+role=3D=22presentation=22  width=3D=22100%=22 ><tr><td align=3D=22center=22=
+ ><a href=3D=22https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSp=
+OvKXhrQO7jJ%2BpSWnN_eS3VgFaOPG_Pni4ZetruPlXe_%2BNQAwds2owLO5qEzKLhNoOCoqb=
+otnfMVkJ3z8o6LzSeji9czr_74nLqVP=22  rel=3D=22noopener noreferrer=22  targ=
+et=3D=22_blank=22  style=3D=22text-decoration:none;cursor:default=22 ><im=
+g id=3D=22OWATemporaryImageDivContainer1=22  src=3D=22https://k12.corwin.=
+com/images/SMC/social%20icons/linkedin.png=22  alt=3D=22=22  border=3D=22=
+0=22  width=3D=2259=22  style=3D=22max-width:100%;display:block;width:59p=
+x;min-width:calc(59px - 0px - 0px);max-width:calc(59px - 0px - 0px);min-w=
+idth:-webkit-calc(59px - 0px - 0px);max-width:-webkit-calc(59px - 0px - 0=
+px);=22 /></a></td></tr></table></td><td valign=3D=22top=22  style=3D=22w=
+hite-space:nowrap;text-wrap:none;=22 ><table cellpadding=3D=220=22  cells=
+pacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=22=
+100%=22 ><tr><td align=3D=22center=22 ><a href=3D=22https://k12.corwin.co=
+m/optiext/optiextension.dll?ID=3DpTSpV0I8ctYArHT7JHGMiHuqpIdMprpZEjiMDca1=
+GRMmOB7FMiOMuhqbfyIYw6Lg0CvKsZ_4qw8Pjxs6vIj4pd0XFQqLrDoW6BQ3_WpQ=22  rel=3D=
+=22noopener noreferrer=22  target=3D=22_blank=22  style=3D=22text-decorat=
+ion:none;cursor:default=22 ><img id=3D=22OWATemporaryImageDivContainer1=22=
+  src=3D=22https://k12.corwin.com/images/SMC/social%20icons/instagram.png=
+=22  alt=3D=22=22  border=3D=220=22  width=3D=2259=22  style=3D=22max-wid=
+th:100%;display:block;width:59px;min-width:calc(59px - 0px - 0px);max-wid=
+th:calc(59px - 0px - 0px);min-width:-webkit-calc(59px - 0px - 0px);max-wi=
+dth:-webkit-calc(59px - 0px - 0px);=22 /></a></td></tr></table></td><td v=
+align=3D=22top=22  style=3D=22white-space:nowrap;text-wrap:none;=22 ><tab=
+le cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=
+=22presentation=22  width=3D=22100%=22 ><tr><td align=3D=22center=22 ><a =
+href=3D=22https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSpQISzM=
+pdGeHwWIraiY%2BxxSi_k4WBm_xG4F2BG9JhthL6%2BNw3tWaBvzgKOC4m1FvSxQinjwlNpEv=
+9waeSx6dmZt5WqMYyGPfnqvlVU=22  rel=3D=22noopener noreferrer=22  target=3D=
+=22_blank=22  style=3D=22text-decoration:none;cursor:default=22 ><img id=3D=
+=22OWATemporaryImageDivContainer1=22  src=3D=22https://k12.corwin.com/ima=
+ges/SMC/social%20icons/youtube.png=22  alt=3D=22=22  border=3D=220=22  wi=
+dth=3D=2259=22  style=3D=22max-width:100%;display:block;width:59px;min-wi=
+dth:calc(59px - 0px - 0px);max-width:calc(59px - 0px - 0px);min-width:-we=
+bkit-calc(59px - 0px - 0px);max-width:-webkit-calc(59px - 0px - 0px);=22 =
+/></a></td></tr></table></td></tr></table></td></tr></table></th><th clas=
+s=3D=22columns=22  valign=3D=22top=22  style=3D=22text-align:left;width:2=
+5%=22 ><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=
+=22  width=3D=22100%=22  role=3D=22presentation=22 ><tr><td bgcolor=3D=22=
+=23eeeeee=22  style=3D=22word-wrap:break-word;word-break:normal=22 ><tabl=
+e cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=
+=22presentation=22  style=3D=22table-layout: fixed;=22  align=3D=22left=22=
+ ><tr><td valign=3D=22top=22  style=3D=22calc(100px - 0px - 0px);max-widt=
+h:calc(100px - 0px - 0px);min-width:-webkit-calc(100px - 0px - 0px);max-w=
+idth:-webkit-calc(100px - 0px - 0px);=22 ><table cellpadding=3D=220=22  c=
+ellspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=
+=22100=22  style=3D=22display:table=22 ><tr><td style=3D=22font-family:Ta=
+homa;font-size:12px;color:=23000000;font-weight:normal;word-wrap:break-wo=
+rd;word-break:normal;width:100px;min-width:calc(100px - 0px - 0px);max-wi=
+dth:calc(100px - 0px - 0px);min-width:-webkit-calc(100px - 0px - 0px);max=
+-width:-webkit-calc(100px - 0px - 0px);;text-align:left=22 >&nbsp;</td></=
+tr></table></td></tr></table></td></tr></table></th></tr></table></td><td=
+ class=3D=22m_hide=22  style=3D=22font-size:0; line-height:1px; height:1p=
+x;=22  height=3D=221=22 >&nbsp;</td></tr></table><table cellpadding=3D=22=
+0=22  cellspacing=3D=220=22  border=3D=220=22  width=3D=22100%=22  role=3D=
+=22presentation=22  bgcolor=3D=22=23ffffff=22 ><tr><td class=3D=22m_hide=22=
+  style=3D=22font-size:0; line-height:1px; height:1px;=22  height=3D=221=22=
+ >&nbsp;</td><td bgcolor=3D=22=23eeeeee=22  valign=3D=22top=22  style=3D=22=
+width:600px;text-align:center;word-wrap:break-word;word-break:normal=22 >=
+<table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  ro=
+le=3D=22presentation=22  width=3D=22100%=22 ><tr><td height=3D=226=22  st=
+yle=3D=22line-height:6px;height:6px=22 ><img alt=3D=22=22  border=3D=220=22=
+  src=3D=22https://k12.corwin.com/Portal/resourcehandler/static/x.png=22 =
+ height=3D=226=22  style=3D=22display:block;height:6px=22 /></td></tr></t=
+able><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22=
+  role=3D=22presentation=22  width=3D=22100%=22 ><tr><td style=3D=22font-=
+family:Tahoma;font-size:12px;color:=23000000;font-weight:normal;word-wrap=
+:break-word;word-break:normal;text-align:center=22 ><p align=3D=22center=22=
+  style=3D=22font-family:Tahoma;font-size:12px;color:=23333333;font-weigh=
+t:normal;word-wrap:break-word;word-break:normal=22 >Corwin has one missio=
+n: to enhance education through intentional professional learning. We bui=
+ld long-term relationships with our authors, educators, clients, and asso=
+ciations who partner with us to develop and continuously improve the best=
+, evidence-based practices that establish and support lifelong learning.<=
+/p></td></tr></table></td><td class=3D=22m_hide=22  style=3D=22font-size:=
+0; line-height:1px; height:1px;=22  height=3D=221=22 >&nbsp;</td></tr></t=
+able><table cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22=
+  width=3D=22100%=22  role=3D=22presentation=22  bgcolor=3D=22=23ffffff=22=
+ ><tr><td class=3D=22m_hide=22  style=3D=22font-size:0; line-height:1px; =
+height:1px;=22  height=3D=221=22 >&nbsp;</td><td bgcolor=3D=22=23eeeeee=22=
+  valign=3D=22top=22  style=3D=22width:600px;text-align:center;word-wrap:=
+break-word;word-break:normal=22 ><table cellpadding=3D=220=22  cellspacin=
+g=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=22100%=
+=22 ><tr><td height=3D=226=22  style=3D=22line-height:6px;height:6px=22 >=
+<img alt=3D=22=22  border=3D=220=22  src=3D=22https://k12.corwin.com/Port=
+al/resourcehandler/static/x.png=22  height=3D=226=22  style=3D=22display:=
+block;height:6px=22 /></td></tr></table><table cellpadding=3D=220=22  cel=
+lspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=
+=22100%=22 ><tr><td align=3D=22center=22 ><table cellpadding=3D=220=22  c=
+ellspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  class=3D=
+=22btn_table=22  width=3D=22150=22  style=3D=22display:table=22 ><tr><td =
+class=3D=22btn_td=22  bgcolor=3D=22=23000000=22  width=3D=22150=22  style=
+=3D=22font-family:Tahoma;line-height:15px;font-size:15px;color:=23ffffff;=
+padding-top:5px;padding-right:5px;padding-bottom:5px;padding-left:5px;tex=
+t-align:center;text-decoration:none;border-radius:3px;text-overflow:ellip=
+sis;overflow:hidden;display:block;word-wrap:break-word;word-break:normal;=
+font-weight:normal;mso-height-rule:exactly=22 ><a class=3D=22btn=22  href=
+=3D=22https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSpV2X5dtKzC=
+ppQYVqhyVmFqMaKIKD7HgB2GrIwdUIKwJ1%2BNcHe0gplrjd0b1IfjOJ12gMICnrRKgv56ULx=
+7zasdYPqROgGC3Cp%2BwV3=22  target=3D=22_blank=22  rel=3D=22noopener noref=
+errer=22  style=3D=22color:=23ffffff;text-decoration:none=22 >Find out mo=
+re</a></td></tr></table></td></tr></table><table cellpadding=3D=220=22  c=
+ellspacing=3D=220=22  border=3D=220=22  role=3D=22presentation=22  width=3D=
+=22100%=22 ><tr><td height=3D=2211=22  style=3D=22line-height:11px;height=
+:11px=22 ><img alt=3D=22=22  border=3D=220=22  src=3D=22https://k12.corwi=
+n.com/Portal/resourcehandler/static/x.png=22  height=3D=2211=22  style=3D=
+=22display:block;height:11px=22 /></td></tr></table></td><td class=3D=22m=
+_hide=22  style=3D=22font-size:0; line-height:1px; height:1px;=22  height=
+=3D=221=22 >&nbsp;</td></tr></table><table cellpadding=3D=220=22  cellspa=
+cing=3D=220=22  border=3D=220=22  width=3D=22100%=22  role=3D=22presentat=
+ion=22  bgcolor=3D=22=23ffffff=22 ><tr><td class=3D=22m_hide=22  style=3D=
+=22font-size:0; line-height:1px; height:1px;=22  height=3D=221=22 >&nbsp;=
+</td><td bgcolor=3D=22=23ffffff=22  valign=3D=22top=22  style=3D=22width:=
+600px;text-align:left;word-wrap:break-word;word-break:normal=22 ><table c=
+ellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22=
+presentation=22  width=3D=22100%=22 ><tr><td height=3D=226=22  style=3D=22=
+line-height:6px;height:6px=22 ><img alt=3D=22=22  border=3D=220=22  src=3D=
+=22https://k12.corwin.com/Portal/resourcehandler/static/x.png=22  height=3D=
+=226=22  style=3D=22display:block;height:6px=22 /></td></tr></table><tabl=
+e cellpadding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=
+=22presentation=22  width=3D=22100%=22 ><tr><td style=3D=22font-family:Ta=
+homa;font-size:12px;color:=23000000;font-weight:normal;word-wrap:break-wo=
+rd;word-break:normal;text-align:left=22 ><p align=3D=22center=22  style=3D=
+=22font-family:Tahoma;font-size:12px;color:=23000000;font-weight:normal;w=
+ord-wrap:break-word;word-break:normal=22 ><span style=3D=22color:=2399999=
+9;=22 >2455 Teller Road, Thousand Oaks, CA 91320, USA =7C (800) 233-9936<=
+/span><br /><span style=3D=22color:=23999999;=22 ><a href=3D=22https://k1=
+2.corwin.com/optiext/optiextension.dll?ID=3DpTSpREPTxMPqr8VAB6m0f4W2CX0Yv=
+7Rt92g37OPA57hcGcN%2BN38Hmq_VkKmhkwBr5dyRCVWzEHiuSc8ois%2BNLl42lLlghO3HHF=
+QJripU=22  style=3D=22text-decoration:underline;color:=23999999;=22 >www.=
+corwin.com</a></span></p><p align=3D=22center=22  style=3D=22font-family:=
+Tahoma;font-size:12px;color:=23000000;font-weight:normal;word-wrap:break-=
+word;word-break:normal=22 ><span style=3D=22color:=23999999;=22 >To ensur=
+e our emails reach your inbox, add info=40k12.corwin.com to your address =
+book.</span></p><p align=3D=22center=22  style=3D=22font-family:Tahoma;fo=
+nt-size:12px;color:=23000000;font-weight:normal;word-wrap:break-word;word=
+-break:normal=22 ><span style=3D=22color:=23999999;=22 >View our <a href=3D=
+=22https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSpV4ciTXNfTB7E=
+K%2Bb4mpa9%2BbbTw5voobeYfpwnzzcFPDTFM2bHa1Uww4hFjWpKKSBrsVLSlayVaIyHh2lcS=
+Y_7wuSp0wbLZNTMn5py=22  style=3D=22text-decoration:underline;color:=23999=
+999;=22 >privacy policy</a>. </span></p><p align=3D=22center=22  style=3D=
+=22font-family:Tahoma;font-size:12px;color:=23000000;font-weight:normal;w=
+ord-wrap:break-word;word-break:normal=22 ><span style=3D=22color:=2399999=
+9;=22 >This message was sent to sam.addington=40daytonisd.net. If you'd r=
+ather not receive emails from Corwin, you may <a href=3D=22https://k12.co=
+rwin.com/optiext/optiextension.dll?ID=3DpTSpUCXmqHx9dnDhYiwFpa%2BvhBU%2B4=
+lm_HESlqKZcfsn06h1%2BNm2uswjgs9Y3FKSOYmqiL4WAPlp_3u6ANfHbP22Lgmtkc6SQ6W7v=
+aOpr=22  style=3D=22color:=23999999;text-decoration:underline;=22 >unsubs=
+cribe</a>.</span><br /></p></td></tr></table></td><td class=3D=22m_hide=22=
+  style=3D=22font-size:0; line-height:1px; height:1px;=22  height=3D=221=22=
+ >&nbsp;</td></tr></table><table cellpadding=3D=220=22  cellspacing=3D=22=
+0=22  border=3D=220=22  width=3D=22100%=22  role=3D=22presentation=22  bg=
+color=3D=22=23ffffff=22 ><tr><td class=3D=22m_hide=22  style=3D=22font-si=
+ze:0; line-height:1px; height:1px;=22  height=3D=221=22 >&nbsp;</td><td b=
+gcolor=3D=22=23ffffff=22  valign=3D=22top=22  style=3D=22width:600px;text=
+-align:left;word-wrap:break-word;word-break:normal=22 ><table cellpadding=
+=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22presentati=
+on=22  width=3D=22100%=22 ><tr><td align=3D=22center=22 ><a href=3D=22htt=
+ps://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSpQ66XdW64EfM85RSUME=
+Ys1ME%2BdVPApTV2A9MiPIWNh3FFNA2c0mJFk3O0VzU9s1lQE4yk_O33shLVmo15moqFzJd5D=
+HqhUfYk7MVk=22  rel=3D=22noopener noreferrer=22  target=3D=22_blank=22  s=
+tyle=3D=22text-decoration:none;cursor:default=22 ><img id=3D=22OWATempora=
+ryImageDivContainer1=22  src=3D=22https://k12.corwin.com/images/SMC/.org/=
+3f3676a6-e310-4a77-ab06-72dcec8ac3ce/tracking-pixel-image_0.png=22  alt=3D=
+=22do not click=22  border=3D=220=22  width=3D=221=22  style=3D=22max-wid=
+th:100%;display:block;width:1px=22 /></a></td></tr></table><table cellpad=
+ding=3D=220=22  cellspacing=3D=220=22  border=3D=220=22  role=3D=22presen=
+tation=22  width=3D=22100%=22  style=3D=22display:table=22 ><tr><td style=
+=3D=22font-family:Tahoma;font-size:12px;color:=23000000;font-weight:norma=
+l;word-wrap:break-word;word-break:normal;width:100%;text-align:left=22 ><=
+p style=3D=22font-family:Tahoma;font-size:12px;color:=23000000;font-weigh=
+t:normal;word-wrap:break-word;word-break:normal=22 ><span style=3D=22colo=
+r:=23999999;=22 >=C2=A9 2025<br /></span><span style=3D=22color:=23999999=
+;=22 ><span style=3D=22font-size:14px;=22 >FF251530485</span></span></p><=
+/td></tr></table></td><td class=3D=22m_hide=22  style=3D=22font-size:0; l=
+ine-height:1px; height:1px;=22  height=3D=221=22 >&nbsp;</td></tr></table=
+><a href=3D=22https://k12.corwin.com/optiext/optiextension.dll?ID=3DpTSpS=
+J98vi57UOl6WH5CD5DZeWO6dz6R6dCCChW69Wp3pMI%2BMp6Ae7N03FSwl8D6%2B0dYrTUxdE=
+6AN7xQ9n84WTykwwIb6CvQQ6%2B%2BfeVw=22 style=3D=22display:none=22>&nbsp;</=
+a></body></html>
+
+--_NexPart_001_--
+
